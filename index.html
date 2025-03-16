@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Survey</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .btn-custom {
+            background-color: #ff4f70;
+            border: none;
+            color: white;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #e33b5a;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Floating shapes */
+        .floating {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: floatAnimation 6s infinite ease-in-out;
+        }
+        .shape1 { width: 50px; height: 50px; top: 10%; left: 10%; animation-duration: 8s; }
+        .shape2 { width: 80px; height: 80px; top: 40%; left: 70%; animation-duration: 10s; }
+        .shape3 { width: 60px; height: 60px; top: 70%; left: 30%; animation-duration: 12s; }
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(20deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating shape1"></div>
+    <div class="floating shape2"></div>
+    <div class="floating shape3"></div>
+
+    <div class="container">
+        <h1>Interactive Survey</h1>
+        <p>We value your opinion! Please answer the questions below.</p>
+        <form id="surveyForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeLOCQslG62bHZpoju9ivwxxDm-_1_LGZG77zgJntnwQAY5BQ/formResponse" method="POST" target="_blank">
+            <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" name="entry.417173000" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control" name="entry.2111445497" required>
+            </div>
+            <div class="mb-3">
+                <label for="feedback" class="form-label">Additional Feedback</label>
+                <textarea class="form-control" name="entry.376570387" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-custom">Submit</button>
+        </form>
+        <p id="responseMessage" class="mt-3"></p>
+    </div>
+
+    <script>
+        document.getElementById("surveyForm").addEventListener("submit", function() {
+            document.getElementById("responseMessage").innerText = "Thank you for your feedback!";
+            setTimeout(() => {
+                document.getElementById("responseMessage").innerText = "";
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
